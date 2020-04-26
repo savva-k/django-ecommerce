@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item"><a href="/">Главная страница</a></li>
+    {% for category in categories_ancestors %}
+        {% if forloop.last %}
+        <li class="breadcrumb-item active" aria-current="page">{{ category.name }}</li>
+        {% else %}
+            <li class="breadcrumb-item"><a href="/categories/{{ category.slug }}">{{ category.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        {% for item in items %}
+        <div class="col-md-4">
+            <div class="card">
+                {% if item.images.all %}
+                    <img class="card-img-top" src="{{ item.images.first }}" alt="{{ item.name }}">
+                {% else %}
+                    <img class="card-img-top" src="{% static "images/no_image.png" %}" alt="{{ item.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <p class="card-text">{{ item.name }}</p>
+                    <button type="button" class="btn btn-primary">Просмотр</button>
+                    <button type="button" class="btn btn-success">В корзину</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

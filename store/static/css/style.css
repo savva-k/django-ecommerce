@@ -1,0 +1,43 @@
+html,body { height: 100%;  margin: 0; }
+
+body {
+    display: table;
+    width: 100%;
+}
+
+header {
+    background-color: royalblue;
+    color: whitesmoke;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+header a {
+    color: lightgreen;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+header a:hover {
+    color: springgreen;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+header a:active {
+    color: tomato;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+}
+
+main {
+    margin-bottom: 20px;
+}
+
+footer {
+  display: table-row;
+  width: 100%;
+  height: 60px;
+  background-color: dimgrey;
+  color: white;
+}

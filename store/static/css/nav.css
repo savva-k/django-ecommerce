@@ -1,0 +1,35 @@
+nav ul {
+  list-style-type: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.nav-js-category-children a {
+  padding-left: 30px;
+}
+
+.nav-js-category-children .nav-js-category-children a {
+  padding-left: 60px;
+}
+
+.nav-link a {
+  display: block;
+  background-color: #eee;
+  color: black;
+  display: block;
+  padding: 12px;
+  text-decoration: underline;
+}
+
+.nav-link a:hover {
+    background-color: #ff33ff !important;
+  }
+
+.nav-link a:active {
+  background-color: #4caf50;
+  color: white;
+}
+
+.nav-link {
+  cursor: pointer;
+}
