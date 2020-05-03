@@ -50,9 +50,12 @@ class Item(models.Model):
     name = models.CharField(max_length=255)
     units = models.IntegerField(choices=item_units, default=1)
     count = models.IntegerField()
+    cost_price = models.IntegerField(default=0)
+    retail_price = models.IntegerField(default=0)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, blank=True)
     distributor = models.ForeignKey(Distributor, on_delete=models.SET_NULL, null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -64,4 +67,9 @@ class Image(models.Model):
 
     def __str__(self):
         return self.image.url
+
+class Characteristics(models.Model):
+    item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='characteristics', default=None)
+    key = models.CharField(max_length=255)
+    value = models.CharField(max_length=255)
     
