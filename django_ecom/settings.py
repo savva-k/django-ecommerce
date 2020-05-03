@@ -129,3 +129,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # Display settings
 
 ITEMS_PER_PAGE = 10
+CURRENCY_SIGN = '₽'

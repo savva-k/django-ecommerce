@@ -31,8 +31,20 @@
                 {% endif %}
                 <div class="card-body">
                     <p class="card-text">{{ item.name }}</p>
-                    <button type="button" class="btn btn-primary">Просмотр</button>
-                    <button type="button" class="btn btn-success">В корзину</button>
+                    <p class="card-text">
+                        {% if item.retail_price > 0 %}
+                            <h3>{{ item.retail_price }} {{ currency_sign }}</h3>
+                        {% else %}
+                            <h4>Нет цены</h4>
+                        {% endif %}
+                    </p>
+                    <div class="row justify-content-center">
+                        <a href="item">
+                            <button type="button" class="btn btn-primary">Перейти к товару</button>
+                        </a>
+                    </div>
+                    <!-- Todo: add a basket -->
+                    <!-- <button type="button" class="btn btn-success">В корзину</button> -->
                 </div>
             </div>
         </div>
