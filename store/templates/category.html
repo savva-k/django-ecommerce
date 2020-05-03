@@ -30,7 +30,7 @@
                     <img class="card-img-top" src="{% static "images/no_image.png" %}" alt="{{ item.name }}">
                 {% endif %}
                 <div class="card-body">
-                    <p class="card-text">{{ item.name }}</p>
+                    <p class="card-text"><a href="/items/{{ item.slug }}">{{ item.name }}</a></p>
                     <p class="card-text">
                         {% if item.retail_price > 0 %}
                             <h3>{{ item.retail_price }} {{ currency_sign }}</h3>
@@ -39,7 +39,7 @@
                         {% endif %}
                     </p>
                     <div class="row justify-content-center">
-                        <a href="item">
+                        <a href="/items/{{ item.slug }}">
                             <button type="button" class="btn btn-primary">Перейти к товару</button>
                         </a>
                     </div>

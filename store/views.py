@@ -22,6 +22,11 @@ def category(request, slug):
     context['currency_sign'] = settings.CURRENCY_SIGN
     return render(request, 'category.html', context)
 
+def item(request, slug):
+    context = getCommonContext()
+    context['item'] = Item.objects.get(slug=slug)
+    return render(request, 'item.html', context)
+
 def getCommonContext():
     context = {}
     context['categories'] = Category.objects.all()

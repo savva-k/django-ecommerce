@@ -48,6 +48,7 @@ class Item(models.Model):
         (5, 'кв. м'),
     )
     name = models.CharField(max_length=255)
+    slug = models.SlugField(null=True)
     units = models.IntegerField(choices=item_units, default=1)
     count = models.IntegerField()
     cost_price = models.IntegerField(default=0)

@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block additional_styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+{% endblock %}
+
+{% block additional_js %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+{% endblock %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block breadcrumbs %}
+    <li class="breadcrumb-item active" aria-current="page">{Главная страница}</li>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h1>{{ item }}</h1>
+        </div>
+    </div>
+
+    {% include 'item_images_snippet.html' %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                <h3>Цена: {{ item.retail_price }}</h3>
+            </div>
+            <div class="col-xs-6">
+                <h3>
+                    {% if item.count > 0 %}
+                        В наличии
+                    {% else %}
+                        Нет в наличии
+                    {% endif %}
+                </h3>
+            </div>
+        </div>
+    </div>
+
+    {% if item.characteristics.all %}
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Характеристики товара</h2>
+                <table class="table table-striped">
+                    {% for characteristic in item.characteristics.all %}
+                    <tr>
+                        <td>{{ characteristic.key }}</td>
+                        <td>{{ characteristic.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Описание товара</h2>
+            <p>{{ item.description|default:"Описание отсутствует" }}</p>
+        </div>
+    </div>
+{% endblock %}
