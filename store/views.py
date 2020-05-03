@@ -17,7 +17,8 @@ def category(request, slug):
     context['current_category'] = current_category
     context['categories_ancestors'] = current_category.get_ancestors(include_self=True)
     context['items'] = paginator.get_page(page)
-    context['total_pages'] = paginator.page_range
+    context['page_range'] = paginator.page_range
+    context['num_pages'] = paginator.num_pages
     return render(request, 'category.html', context)
 
 def getCommonContext():

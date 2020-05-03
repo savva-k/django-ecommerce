@@ -1,4 +1,4 @@
-{% if total_pages.count > 1 %}
+{% if num_pages > 1 %}
 <nav aria-label="pagination">
   <ul class="pagination">
     {% if items.has_previous %}
@@ -13,7 +13,7 @@
       </li>
     {% endif %}
 
-    {% for page in total_pages %}
+    {% for page in page_range %}
       {%if page == items.number %}
         <li class="page-item active" aria-current="page">
           <span class="page-link">
