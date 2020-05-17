@@ -2,6 +2,9 @@ from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
 
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
 class Category(MPTTModel):
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     name = models.CharField(max_length=255)
@@ -64,6 +67,7 @@ class Item(models.Model):
 class Image(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='images', default=None)
     image = models.ImageField(upload_to='images/')
+    thumbnail = ImageSpecField(source='image', processors=[ResizeToFill(400, 400)], format='JPEG', options={'quality': 80})
     is_main = models.BooleanField(null=True, default=None)
 
     def __str__(self):

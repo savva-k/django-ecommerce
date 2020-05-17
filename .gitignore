@@ -99,3 +99,4 @@ migrations/
 ### Uploaded media ###
 
 media/images/
+media/cache/

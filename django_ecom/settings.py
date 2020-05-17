@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'store.apps.StoreConfig',
-    'mptt'
+    'mptt',
+    'imagekit',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ITEMS_PER_PAGE = 10
 CURRENCY_SIGN = '₽'
+
+# Thumbnails settings
