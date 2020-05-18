@@ -1,6 +1,7 @@
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
+from django.utils.text import slugify
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -25,6 +26,10 @@ class Category(MPTTModel):
 
     def get_url(self):
         return reverse('category', kwargs={'slug': self.slug})
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name, allow_unicode=True) + '-' + str(self.id)
+        super().save(*args, **kwargs)
 
 
 class Brand(models.Model):
