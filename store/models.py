@@ -2,6 +2,7 @@ from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.urls import reverse
 from django.utils.text import slugify
+from transliterate import translit
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
@@ -28,7 +29,8 @@ class Category(MPTTModel):
         return reverse('category', kwargs={'slug': self.slug})
     
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name, allow_unicode=True) + '-' + str(self.id)
+        slug = translit(self.name, 'ru', reversed=True) + '-' + str(self.id)
+        self.slug = slugify(slug)
         super().save(*args, **kwargs)
 
 
