@@ -100,3 +100,7 @@ migrations/
 
 media/images/
 media/cache/
+
+### Data import ###
+
+data_import/prod_*
