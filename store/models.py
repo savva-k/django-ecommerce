@@ -49,6 +49,12 @@ class Distributor(models.Model):
     def __str__(self):
         return self.name
 
+class Seller(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class Item(models.Model):
     item_units = (
         (1, 'шт'),
@@ -67,6 +73,8 @@ class Item(models.Model):
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, blank=True)
     distributor = models.ForeignKey(Distributor, on_delete=models.SET_NULL, null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+    madeIn = models.CharField(max_length=100, null=True, blank=True)
+    seller = models.ForeignKey(Seller, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -84,4 +92,3 @@ class Characteristics(models.Model):
     item = models.ForeignKey(Item, on_delete=models.CASCADE, related_name='characteristics', default=None)
     key = models.CharField(max_length=255)
     value = models.CharField(max_length=255)
-    
