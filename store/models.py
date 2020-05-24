@@ -62,6 +62,8 @@ class Item(models.Model):
         (3, 'пара'),
         (4, 'пог. м'),
         (5, 'кв. м'),
+        (6, 'комплект'),
+        (7, 'упаковка')
     )
     name = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
@@ -75,6 +77,11 @@ class Item(models.Model):
     description = models.TextField(null=True, blank=True)
     madeIn = models.CharField(max_length=100, null=True, blank=True)
     seller = models.ForeignKey(Seller, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        slug = translit(self.name, 'ru', reversed=True) + '-' + str(self.id)
+        self.slug = slugify(slug)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
