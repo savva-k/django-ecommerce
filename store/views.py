@@ -29,7 +29,7 @@ def item(request, slug):
 
 def getCommonContext():
     context = {}
-    context['categories'] = Category.objects.all().filter(visible=True)
+    context['categories'] = Category.objects.all().filter(visible=True, number_of_items__gt=0)
     context['variable'] = 'value1'
     return context
 

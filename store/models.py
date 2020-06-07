@@ -12,6 +12,7 @@ class Category(MPTTModel):
     name = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
     visible = models.BooleanField(default=True)
+    number_of_items = models.IntegerField(default=0)
 
     class MPTTMeta:
         unique_together = ('slug', 'parent',)
