@@ -34,7 +34,7 @@ class Command(BaseCommand):
 
     def create_item(self, id, category, cost_price, retail_price, name,
                     distributor, description, brand, country, seller, units, count):
-        self.stdout.write('Creating category: id=%s, name=%s, count=%s, category=%s, cost_price=%s, retail_price=%s, brand=%s, distributor=%s, seller=%s'
+        self.stdout.write('Creating item: id=%s, name=%s, count=%s, category=%s, cost_price=%s, retail_price=%s, brand=%s, distributor=%s, seller=%s'
                           % (id, name, count, category, cost_price, retail_price, brand, distributor, seller))
         
         category = self.to_int_or_none(category)
