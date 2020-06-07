@@ -11,6 +11,7 @@ class Category(MPTTModel):
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     name = models.CharField(max_length=255)
     slug = models.SlugField(null=True)
+    visible = models.BooleanField(default=True)
 
     class MPTTMeta:
         unique_together = ('slug', 'parent',)
