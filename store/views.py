@@ -16,9 +16,8 @@ def category(request, slug):
     page = resolve_page(request)
     context['current_category'] = current_category
     context['categories_ancestors'] = current_category.get_ancestors(include_self=True)
+    context['pagination'] = paginator
     context['items'] = paginator.get_page(page)
-    context['page_range'] = paginator.page_range
-    context['num_pages'] = paginator.num_pages
     context['currency_sign'] = settings.CURRENCY_SIGN
     return render(request, 'category.html', context)
 

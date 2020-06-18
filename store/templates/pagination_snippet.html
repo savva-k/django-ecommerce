@@ -1,41 +1,41 @@
-{% if num_pages > 1 %}
+{% if pagination.num_pages > 1 %}
+{% load proper_paginate %}
+{% load url_replace %}
+
 <nav aria-label="pagination">
+
   <ul class="pagination">
-    {% if items.has_previous %}
-      <li class="page-item">
-        <span class="page-link">
-          <a href="?page={{ items.previous_page_number }}">Предыдущая</a>
-        </span>
-      </li>
+    {% if items.number == 1 %}
+        <li class="page-item disabled"><span class="page-link">⇤</span></li>
     {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">Предыдущая</span>
-      </li>
+        <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' 1 %}">⇤</a></li>
     {% endif %}
-
-    {% for page in page_range %}
-      {%if page == items.number %}
-        <li class="page-item active" aria-current="page">
-          <span class="page-link">
-            {{ page }}
-            <span class="sr-only">(current)</span>
-          </span>
-        </li>
-      {% else %}
-        <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-      {% endif %}
-    {% endfor %}
-
-    {% if items.has_next %}
-      <li class="page-item">
-        <span class="page-link">
-          <a href="?page={{ items.next_page_number }}">Следующая</a>
-        </span>
-      </li>
+    {% if items.has_previous %}
+        <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' items.previous_page_number %}">&laquo;</a></li>
     {% else %}
-      <li class="page-item disabled">
-        <span class="page-link">Следующая</span>
-      </li>
+        <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+    {% endif %}
+    {% for i in pagination|proper_paginate:items.number %}
+        {% if items.number == i %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">
+                {{ i }}
+                <span class="sr-only">(current)</span>
+              </span>
+            </li>
+        {% else %}
+            <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
+        {% endif %}
+    {% endfor %}
+    {% if items.has_next %}
+        <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' items.next_page_number %}">&raquo;</a></li>
+    {% else %}
+        <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+    {% endif %}
+    {% if items.number == pagination.num_pages %}
+        <li class="page-item disabled"><span class="page-link">⇥</span></li>
+    {% else %}
+        <li class="page-item"><a class="page-link" href="?{% url_replace request 'page' pagination.num_pages %}">⇥</a></li>
     {% endif %}
   </ul>
 </nav>
